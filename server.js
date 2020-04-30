@@ -10,7 +10,7 @@ require('./models/user.models');
 const app = express();
 
 const db = process.env.MONGO_URI;
-const port = process.env.PORT;
+const port = process.env.PORT || 80;
 const garage = require('./app.routes');
 
 const start = async () => {
@@ -32,6 +32,10 @@ const start = async () => {
     app.set('views', 'views');
 
     app.use(express.static(path.join(__dirname, 'public')));
+    app.use(
+      '/css',
+      express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css/'))
+    );
 
     app.use('/', garage);
 
