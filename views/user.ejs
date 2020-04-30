@@ -1,0 +1,26 @@
+<%- include('./includes/_head.ejs') %>
+<body>
+  <%- include('./includes/_navbar.ejs') %>
+    <div class="container pt-5">
+        <h1 class="display-4">You are viewing <%= user.name %>'s profile</h1>
+        <p class="lead">He has <%= user.cars.length %> cars</p>
+        <div class="row">
+            <% for(let car of user.cars) { %>
+                <div class="col-sm-6">
+                    <div class="card text-center mt-3">
+                        <div class="card-body">
+                            <h5><%= car.make %></h5>
+                            <p class="card-text"><%= car.model %></p>
+
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        
+        
+
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>

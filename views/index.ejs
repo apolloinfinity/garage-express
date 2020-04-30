@@ -1,0 +1,30 @@
+
+  <%- include('./includes/_head.ejs') %>
+  <body>
+    <%- include('./includes/_navbar.ejs') %>
+    <div class="container">
+      <h1><%= pageTitle %></h1>
+
+      <div>
+        <div class="list-group">
+        <% if(users.length > 0) { %>
+          <% for(let user of users) { %>
+          
+            <a href="/users/<%=user._id %>" class="list-group-item list-group-item-action">
+              <%= user.name %>
+              <p><%= user.cars.length %></p>
+            </a>
+        
+  
+          <% } %>
+          <% } else { %>
+            <h2>No Users!</h2>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+
+
+    <%- include('./includes/_scripts.ejs') %>
+  </body>
+</html>
