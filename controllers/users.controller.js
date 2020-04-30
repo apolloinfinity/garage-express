@@ -1,12 +1,25 @@
-const Car = require('../models/car.models');
 const User = require('../models/user.models');
 
-exports.findUser = async (req, res) => {
-  const id = await req.query.id;
-  console.log(id);
-  let user = await User.findOne({ _id: await req.params.id });
-  //   console.log(user);
-  res.json(user);
+exports.index = async (req, res) => {
+  const users = await User.find({});
+  res.render('index', {
+    pageTitle: 'Mongo Reference Demo',
+    users: users,
+  });
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    const { id } = await req.params;
+    let user = await User.findOne({ _id: id }).populate('cars');
+    // console.log(user);
+    res.render('user', {
+      pageTitle: user.name,
+      user: user,
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 exports.allUsers = async (req, res) => {
@@ -30,8 +43,8 @@ exports.getUserCars = async (req, res) => {
     const { id } = await req.params;
     console.log(id);
 
-    let foundUser = await User.findOne({ _id: id }).populate('cars');
-    res.status(200).json(foundUser);
+    let user = await User.findOne({ _id: id }).populate('cars');
+    res.status(200).json(user.cars[0]);
   } catch (err) {
     console.error(err);
   }
