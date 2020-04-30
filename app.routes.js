@@ -3,15 +3,18 @@ const router = Router();
 
 const { allCars, addCar } = require('./controllers/cars.controller');
 const {
+  index,
   allUsers,
   createUser,
-  findUser,
+  getUser,
   getUserCars,
 } = require('./controllers/users.controller');
 
+router.get('/', index);
+
 router.get('/users', allUsers);
 router.post('/users/create', createUser);
-router.get('/users/:id', findUser);
+router.get('/users/:id', getUser);
 router.get('/users/:id/cars', getUserCars);
 
 router.get('/cars', allCars);
