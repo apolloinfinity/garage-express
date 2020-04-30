@@ -1,7 +1,8 @@
 const path = require('path');
 
-const mongoose = require('mongoose');
 const express = require('express');
+const favicon = require('express-favicon');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 require('./models/car.models');
@@ -25,6 +26,7 @@ const start = async () => {
       `Database connection open to ${mongoose.connection.host} ${mongoose.connection.name}`
     );
 
+    app.use(favicon(__dirname + '/public/favicon.ico'));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
