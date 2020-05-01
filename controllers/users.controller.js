@@ -29,10 +29,13 @@ exports.allUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
+    // console.log(req.body);
     const { name, age } = req.body;
+
     const user = User({ name, age });
+    // console.log(user);
     await user.save();
-    res.status(201).send('User Created');
+    res.status(201).redirect('/');
   } catch (err) {
     console.error(err);
   }
@@ -44,7 +47,7 @@ exports.getUserCars = async (req, res) => {
     console.log(id);
 
     let user = await User.findOne({ _id: id }).populate('cars');
-    res.status(200).json(user.cars[0]);
+    res.status(200).json(user.cars);
   } catch (err) {
     console.error(err);
   }
