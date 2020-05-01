@@ -13,7 +13,7 @@ const {
 router.get('/', index);
 
 router.get('/users', allUsers);
-router.post('/users/create', createUser);
+router.post('/users', createUser);
 router.get('/users/:id', getUser);
 router.get('/users/:id/cars', getUserCars);
 
