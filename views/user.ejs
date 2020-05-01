@@ -1,26 +1,48 @@
 <%- include('./includes/_head.ejs') %>
+
 <body>
-  <%- include('./includes/_navbar.ejs') %>
+    <%- include('./includes/_navbar.ejs') %>
     <div class="container pt-5">
         <h1 class="display-4">You are viewing <%= user.name %>'s profile</h1>
-        <p class="lead">He has <%= user.cars.length %> cars</p>
+        <p class="lead">They have <%= user.cars.length %> cars</p>
+        
+        <!-- Modal -->
+        <%- include('./includes/_carModal.ejs') %>
+
         <div class="row">
-            <% for(let car of user.cars) { %>
-                <div class="col-sm-6">
-                    <div class="card text-center mt-3">
-                        <div class="card-body">
-                            <h5><%= car.make %></h5>
-                            <p class="card-text"><%= car.model %></p>
+
+            <% if(user.cars.length > 0) { %>
+                <% for(let car of user.cars) { %>
+                    <div class="col-sm-6">
+                        <div class="card text-center mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= car.make %></h5>
+                                <p class="card-text"><%= car.model %></p>
+
+                            </div>
 
                         </div>
                     </div>
+
+                <% } %>
+            <% } else { %>
+                <div class="col-sm-12 pt-5">
+                    <h3>No cars!</p>
+
                 </div>
             <% } %>
+
         </div>
-        
-        
+
+
 
     </div>
     <%- include('./includes/_scripts.ejs') %>
-  </body>
+    <script>
+        function formSubmit() {
+            document.getElementById('addCar').submit();
+        }
+    </script>
+</body>
+
 </html>
