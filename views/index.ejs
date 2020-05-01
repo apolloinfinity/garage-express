@@ -2,21 +2,23 @@
   <%- include('./includes/_head.ejs') %>
   <body>
     <%- include('./includes/_navbar.ejs') %>
-    <div class="container">
-      <h1><%= pageTitle %></h1>
-
+    <div class="container pt-5">
+      <h1 class="display-4"><%= pageTitle %></h1>
+      <p class="lead">There are <%= users.length %> users.</p>
+      <%- include('./includes/_userModal.ejs') %>
+      
       <div>
-        <div class="list-group">
+        <div class="list-group mt-4">
         <% if(users.length > 0) { %>
-          <% for(let user of users) { %>
+            <% for(let user of users) { %>
+            
+              <a href="/users/<%=user._id %>" class="list-group-item list-group-item-action">
+                <%= user.name %>
+                <p><%= user.cars.length %></p>
+              </a>
           
-            <a href="/users/<%=user._id %>" class="list-group-item list-group-item-action">
-              <%= user.name %>
-              <p><%= user.cars.length %></p>
-            </a>
-        
-  
-          <% } %>
+    
+            <% } %>
           <% } else { %>
             <h2>No Users!</h2>
           <% } %>
@@ -26,5 +28,5 @@
 
 
     <%- include('./includes/_scripts.ejs') %>
-  </body>
+    <script src="/js/app.js"></script>
 </html>
