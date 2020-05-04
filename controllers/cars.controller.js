@@ -1,9 +1,12 @@
 const Car = require('../models/car.models');
 const User = require('../models/user.models');
 
-exports.allCars = async (req, res) => {
+exports.getAllCars = async (req, res) => {
   const cars = await Car.find({});
-  res.json(cars);
+  res.render('cars', {
+    pageTitle: 'Cars',
+    cars: cars,
+  });
 };
 
 exports.addCar = async (req, res) => {
