@@ -10,14 +10,14 @@ exports.addCar = async (req, res) => {
   try {
     // Get params
     const { id } = req.params;
+    // console.log(id);
+    // Get and find user
+    const user = await User.findOne({ _id: id });
     // Create new car with model
     const newCar = new Car(req.body);
 
-    // Get and find user
-    const user = await User.findById({ _id: id });
-
     // Assign owner in newCar to user
-    newCar.owner = user;
+    newCar.owner = user._id;
 
     // save car
     await newCar.save();
@@ -25,8 +25,9 @@ exports.addCar = async (req, res) => {
     // Add car to owner's  array
     user.cars.push(newCar);
 
+    console.log(newCar);
     await user.save();
-    res.status(201).json(newCar);
+    res.status(201).redirect(`/users/${id}`);
   } catch (err) {
     console.error(err);
   }
