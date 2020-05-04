@@ -1,0 +1,19 @@
+<%- include('./includes/_head.ejs') %>
+<body>
+<%- include('./includes/_navbar.ejs') %>
+<div class="container pt-5">
+    <h1 class="display-4">All Cars</h1>
+    <% if(cars.length === 0) { %>
+        <p>There are no cars in the garage</p>
+    <% } else if(cars.length === 1) { %>
+        <p>There is <%= cars.length %> car in the garage</p>
+    <% } else { %>
+    
+        <p class="lead">There are a total of <%= cars.length %> in the garage</p>
+    <% } %>
+</div>
+
+<%- include('./includes/_scripts.ejs') %>
+<script src="/js/app.js"></script>
+</body>
+</html>

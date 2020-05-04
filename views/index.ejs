@@ -12,9 +12,9 @@
         <% if(users.length > 0) { %>
             <% for(let user of users) { %>
             
-              <a href="/users/<%=user._id %>" class="list-group-item list-group-item-action">
+              <a href="/users/<%=user._id %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 <%= user.name %>
-                <p><%= user.cars.length %></p>
+                <span class="badge badge-primary badge-pill">Total Cars: <%= user.cars.length %></span>
               </a>
           
     
