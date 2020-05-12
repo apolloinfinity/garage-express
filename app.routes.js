@@ -2,13 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const { getAllCars, addCar } = require('./controllers/cars.controller');
-const {
-  index,
-  allUsers,
-  createUser,
-  getUser,
-  getUserCars,
-} = require('./controllers/users.controller');
+const { index, allUsers, createUser, getUser, getUserCars } = require('./controllers/users.controller');
 
 router.get('/', index);
 
