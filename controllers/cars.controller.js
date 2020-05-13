@@ -43,3 +43,5 @@ exports.addCar = async (req, res) => {
 		console.error(err);
 	}
 };
+
+exports.deleteCar = async (res, req) => {};

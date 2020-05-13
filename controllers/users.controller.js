@@ -3,7 +3,7 @@ const User = require('../models/user.models');
 exports.index = async (req, res) => {
 	const users = await User.find({});
 	res.render('index', {
-		pageTitle: 'Mongoose Reference Demo',
+		pageTitle: 'Garage Demo',
 		users: users,
 	});
 };
@@ -13,10 +13,14 @@ exports.getUser = async (req, res) => {
 		const { id } = await req.params;
 		let user = await User.findOne({ _id: id }).populate('cars');
 		// console.log(user);
-		res.render('user', {
-			pageTitle: user.name,
-			user: user,
-		});
+		if (!user) {
+			res.redirect('/');
+		} else {
+			res.render('user', {
+				pageTitle: user.name,
+				user: user,
+			});
+		}
 	} catch (err) {
 		console.error(err);
 	}
@@ -47,7 +51,11 @@ exports.getUserCars = async (req, res) => {
 		console.log(id);
 
 		let user = await User.findOne({ _id: id }).populate('cars');
-		res.status(200).json(user.cars);
+		if (!user) {
+			res.redirect('/');
+		} else {
+			res.status(200).json(user.cars);
+		}
 	} catch (err) {
 		console.error(err);
 	}
