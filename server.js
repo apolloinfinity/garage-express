@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 require('dotenv').config();
 require('./models/car.models');
@@ -20,20 +21,20 @@ const start = async () => {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useCreateIndex: true,
-			useFindAndModify: false,
-			dbName: 'garage',
+			useFindAndModify: false
 		});
-		console.log(`Database connection open to ${mongoose.connection.host} ${mongoose.connection.name}`);
+		console.log(
+			`Database connection open to ${mongoose.connection.host} ${mongoose.connection.name}`
+		);
 
 		app.use(favicon(__dirname + '/public/favicon.ico'));
+		app.use(cors());
 		app.use(express.json());
-		app.use(express.urlencoded({ extended: true }));
-
-		app.set('view engine', 'ejs');
-		app.set('views', 'views');
-
-		app.use(express.static(path.join(__dirname, 'public')));
-		app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css/')));
+		app.use(
+			express.urlencoded({
+				extended: true
+			})
+		);
 
 		app.use('/', garage);
 

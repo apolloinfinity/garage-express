@@ -3,10 +3,7 @@ const User = require('../models/user.models');
 
 exports.getAllCars = async (req, res) => {
 	const cars = await Car.find({});
-	res.render('cars', {
-		pageTitle: 'Cars',
-		cars: cars,
-	});
+	res.json(cars);
 };
 
 exports.addCar = async (req, res) => {
@@ -17,14 +14,22 @@ exports.addCar = async (req, res) => {
 		// Get and find user
 		const user = await User.findOne({ _id: id });
 		// Create new car with model
-		const { make, model, year, owner, cylinders, cylinder_configuration, horsepower } = await req.body;
+		const {
+			make,
+			model,
+			year,
+			owner,
+			cylinders,
+			cylinder_configuration,
+			horsepower
+		} = await req.body;
 		console.log(req.body);
 		const newCar = new Car({
 			make,
 			model,
 			year,
 			engine: { cylinders, cylinder_configuration, horsepower },
-			owner,
+			owner
 		});
 
 		// Assign owner in newCar to user
@@ -38,7 +43,7 @@ exports.addCar = async (req, res) => {
 
 		// console.log(newCar);
 		await user.save();
-		res.status(201).redirect(`/users/${id}`);
+		res.status(201).json(user);
 	} catch (err) {
 		console.error(err);
 	}
