@@ -4,35 +4,35 @@ const EngineSchema = new Schema(
 	{
 		cylinders: Number,
 		cylinder_configuration: String,
-		horsepower: Number,
+		horsepower: Number
 	},
 	{ _id: false }
 );
 
-const CarSchema = new Schema({
+const VehicleSchema = new Schema({
 	make: {
 		type: String,
-		required: true,
+		required: true
 	},
 	model: {
 		type: String,
-		require: true,
+		require: true
 	},
 	year: {
 		type: Number,
-		required: true,
+		required: true
 	},
 	engine: EngineSchema,
 	owner: {
 		type: Schema.Types.ObjectId,
-		ref: 'User',
-	},
+		ref: 'User'
+	}
 });
 
-const Car = model('Car', CarSchema);
+const Vehicle = model('Vehicle', VehicleSchema);
 const Engine = model('Engine', EngineSchema);
 
 module.exports = {
-	Car,
-	Engine,
+	Vehicle,
+	Engine
 };
