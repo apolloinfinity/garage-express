@@ -1,5 +1,3 @@
-const path = require('path');
-
 const express = require('express');
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
