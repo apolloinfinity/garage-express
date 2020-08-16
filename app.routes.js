@@ -13,8 +13,8 @@ router.get('/users', getUsers);
 router.post('/users', createUser);
 router.delete('/users/:id', deleteUser);
 
-router.get('/users/:id/garage', getUserVehicles);
-router.post('/users/:id/garage', addVehicle);
+router.get('/users/:id', getUserVehicles);
+router.post('/users/:id', addVehicle);
 
 router.get('/garage', getAllVehicles);
 router.put('/garage', deleteVehicle);
