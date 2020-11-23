@@ -12,4 +12,17 @@ Previous iteration of this project was based on using Mongodb for storing data. 
 * Angular 11+ for Front-end
 * TailwindCSS
 
+
+### Knex commands
+```bash
+$ npx knex migrate:make name_of_tables
+$ npx init knex
+$ npx knex migrate:make name_of_migration
+$ npx knex migrate:latest *creating tables
+$ npx knex seed:make name_of_seed
+$ npx knex seed:run
+# Run a specific seed
+$ npx knex seed:run --specific=specific-seed.js
+```
+
 Moving from MongoDB to SQL using Knex.js

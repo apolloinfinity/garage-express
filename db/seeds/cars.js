@@ -1,0 +1,88 @@
+exports.seed = function(knex) {
+	// Deletes ALL existing entries
+	return knex('cars').del().then(function() {
+		// Inserts seed entries
+		return knex('cars').insert([
+			{
+				model: '458 Italia',
+				make: 'Ferrari',
+				year: 2015,
+				engine_type: 'V8',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Avorio',
+				user_id: 1,
+			},
+			{
+				model: 'V12 Vanquish',
+				make: 'Aston Martin',
+				year: 2004,
+				engine_type: 'V12',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Almond Green',
+				user_id: 1,
+			},
+			{
+				model: 'GT',
+				make: 'Ford',
+				year: 2004,
+				engine_type: 'Supercharged V8',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Torch Red',
+				user_id: 2,
+			},
+			{
+				model: 'Gallardo Spyder',
+				make: 'Lamborghini',
+				year: 2008,
+				engine_type: 'V10',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Bianco Canopous',
+				user_id: 2,
+			},
+			{
+				model: 'Mustang GT',
+				make: 'Ford',
+				year: 1968,
+				engine_type: 'V8',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Highland Green',
+				user_id: 3,
+			},
+			{
+				model: 'E-Type',
+				make: 'Jaguar',
+				year: 1968,
+				engine_type: 'Straight 6',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Carmen Red',
+				user_id: 3,
+			},
+			{
+				model: '458 Speciale',
+				make: 'Ferrari',
+				year: 2015,
+				engine_type: 'V8',
+				fuel_type: 'petrol',
+				hybrid: false,
+				color: 'Rosso Scuderia',
+				user_id: 4,
+			},
+			{
+				model: 'P1',
+				make: 'McLaren',
+				year: 2015,
+				engine_type: 'Twin-turbo V8',
+				fuel_type: 'petrol',
+				hybrid: true,
+				color: 'Lantan Purple',
+				user_id: 4,
+			},
+		]);
+	});
+};

@@ -4,8 +4,6 @@ const express = require('express');
 const favicon = require('express-favicon');
 
 require('dotenv').config();
-require('./models/car.models');
-require('./models/user.models');
 
 const app = express();
 
