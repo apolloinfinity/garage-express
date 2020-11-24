@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 
 const port = process.env.PORT || 80;
-const garage = require('./app.routes');
+const garage = require('./routes/garage.routes');
 
 const start = async () => {
 	try {
@@ -17,14 +17,8 @@ const start = async () => {
 		app.use(express.urlencoded({ extended: true }));
 
 		app.use(express.static(path.join(__dirname, 'public')));
-		app.use(
-			'/css',
-			express.static(
-				path.join(__dirname, '/node_modules/bootstrap/dist/css/')
-			)
-		);
 
-		app.use('/', garage);
+		app.use('/garage', garage);
 
 		app.listen(port, () => console.log(`Listening on port ${port}`));
 	} catch (err) {
