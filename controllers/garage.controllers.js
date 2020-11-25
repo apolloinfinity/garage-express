@@ -1,4 +1,4 @@
-const { from } = require('../db/knex');
+const { from, first } = require('../db/knex');
 const knex = require('../db/knex');
 require('dotenv').config();
 
@@ -21,7 +21,7 @@ exports.getUser = async (req, res) => {
 			.innerJoin('cars', 'users.user_id', 'cars.user_id')
 			.where('cars.user_id', req.params.id);
 
-		res.status(200).send(user);
+		res.status(200).json(user);
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -29,7 +29,25 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
 	try {
-	} catch (err) {}
+		// const { first_name, last_name, email } = req.body;
+		let newUser = await knex('users').insert({
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+		});
+
+		res.status(200).json(newUser);
+		console.log(req.body);
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
+
+exports.updateUser = async (req, res) => {
+	try {
+	} catch (err) {
+		res.status(400).json({ err: error });
+	}
 };
 
 // Car methods
