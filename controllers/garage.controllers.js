@@ -7,9 +7,9 @@ exports.getUsers = async (req, res) => {
 	try {
 		let users = await knex.select().from('users');
 
-		res.status(200).send(users);
+		res.status(200).json(users);
 	} catch (err) {
-		res.status(400).send(err);
+		res.status(400).json({ err: err });
 	}
 };
 
@@ -21,32 +21,50 @@ exports.getUser = async (req, res) => {
 			.innerJoin('cars', 'users.user_id', 'cars.user_id')
 			.where('cars.user_id', req.params.id);
 
-		res.status(200).json(user);
+		res.status(200).json({ user: user });
 	} catch (err) {
-		res.status(400).send(err);
+		res.status(400).json({ err: err });
 	}
 };
 
 exports.createUser = async (req, res) => {
 	try {
-		// const { first_name, last_name, email } = req.body;
+		const { first_name, last_name, email } = req.body;
 		let newUser = await knex('users').insert({
-			first_name: req.body.first_name,
-			last_name: req.body.last_name,
-			email: req.body.email,
+			first_name,
+			last_name,
+			email,
 		});
 
-		res.status(200).json(newUser);
-		console.log(req.body);
+		res.status(200).json({ user: newUser });
 	} catch (err) {
-		res.status(400).send(err);
+		res.status(400).json({ err: err });
 	}
 };
 
 exports.updateUser = async (req, res) => {
 	try {
+		const { first_name, last_name, email } = await req.body;
+
+		await knex('users').where('user_id', await req.params.id).update({
+			first_name: first_name,
+			last_name: last_name,
+			email: email,
+		});
+		const updatedUser = await knex('users').where('user_id', req.params.id);
+		res.status(200).json({ user: updatedUser });
 	} catch (err) {
-		res.status(400).json({ err: error });
+		res.status(400).json({ err: err });
+	}
+};
+exports.deleteUser = async (req, res) => {
+	try {
+		const id = await req.params.id;
+		await knex('users').where('user_id', id).del();
+		let users = await knex.select().from('users');
+		res.status(200).json(users);
+	} catch (err) {
+		res.status(400).json({ err: err });
 	}
 };
 
@@ -57,6 +75,6 @@ exports.getCars = async (req, res) => {
 
 		res.send(cars);
 	} catch (err) {
-		res.status(400).send(err);
+		res.status(400).json({ err: err });
 	}
 };
