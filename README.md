@@ -25,4 +25,7 @@ $ npx knex seed:run
 $ npx knex seed:run --specific=specific-seed.js
 ```
 
+req.params.id = url/user/1
+req.query = url/user?id=1
+
 Moving from MongoDB to SQL using Knex.js
