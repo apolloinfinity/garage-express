@@ -153,7 +153,6 @@ exports.deleteCar = async (req, res) => {
 	try {
 		const id = await req.params.id;
 		await knex('cars').where('car_id', id).del();
-		let car = await knex.select().from('cars');
 
 		res.status(200).json({ msg: 'Car deleted' });
 	} catch (err) {
