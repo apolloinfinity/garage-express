@@ -2,17 +2,21 @@ const path = require('path');
 
 const express = require('express');
 const favicon = require('express-favicon');
+const cors = require('cors');
+const logger = require('morgan');
 
 require('dotenv').config();
 
 const app = express();
-
 const port = process.env.PORT || 80;
 const garage = require('./routes/garage.routes');
 
 const start = async () => {
 	try {
 		app.use(favicon(__dirname + '/public/favicon.ico'));
+
+		app.use(cors());
+		app.use(logger('dev'));
 		app.use(express.json());
 		app.use(express.urlencoded({ extended: true }));
 
