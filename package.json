@@ -1,28 +1,36 @@
 {
-	"name": "mongo-reference",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon server.js"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"bcryptjs": "^2.4.3",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"express-favicon": "^2.0.1",
-		"jsonwebtoken": "^8.5.1",
-		"knex": "^0.21.12",
-		"morgan": "^1.10.0",
-		"permit": "^0.2.4",
-		"pg": "^8.5.1"
-	},
-	"devDependencies": {
-		"nodemon": "^2.0.5"
-	}
+  "name": "garage-express",
+  "version": "1.0.0",
+  "description": "I love cars. I love everything about their design, the engineering, the engines/motors, and what their energy source is. \r I have much love for the old tried and true gasoline/diesel engines but I absolutely love the new hybrid and fully electric supercars.",
+  "main": "knexfile.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apolloinfinity/garage-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apolloinfinity/garage-express/issues"
+  },
+  "homepage": "https://github.com/apolloinfinity/garage-express#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.12",
+    "morgan": "^1.10.0",
+    "permit": "^0.2.4",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
