@@ -1,6 +1,11 @@
 const knex = require('../db/knex');
 require('dotenv').config();
 
+// Authentication
+exports.createAccount = async (req, res) => {
+	const { first_name, last_name, email, password } = req.body;
+};
+
 // User methods
 exports.getUsers = async (req, res) => {
 	try {
@@ -28,6 +33,7 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
 	try {
+		// check req to see if user is admin to create other users.
 		const { first_name, last_name, email } = req.body;
 		const newUser = await knex('users')
 			.insert({
