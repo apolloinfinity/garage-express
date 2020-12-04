@@ -28,4 +28,7 @@ $ npx knex seed:run --specific=specific-seed.js
 req.params.id = url/user/1
 req.query = url/user?id=1
 
+* Use return in if/else statements so that a "Cannot set headers after they are sent 
+to the client" doesn't happen
+
 Moving from MongoDB to SQL using Knex.js
