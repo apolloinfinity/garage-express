@@ -1,6 +1,3 @@
-exports.up = function(knex) {};
-
-exports.down = function(knex) {};
 // Migration
 exports.up = async function(knex) {
 	await knex.schema.createTable('users', (table) => {
