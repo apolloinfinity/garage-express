@@ -5,7 +5,7 @@ const permit = new Bearer();
 
 const jwtSecret = process.env.JWT_SECRET;
 
-exports.authorize = async (req, res, next) => {
+exports.authorized = async (req, res, next) => {
 	try {
 		const token = permit.check(req);
 		if (!token) {
@@ -15,7 +15,9 @@ exports.authorize = async (req, res, next) => {
 		}
 		const payload = jwt.verify(token, jwtSecret);
 		console.log(payload);
+		req.user = payload;
+		next();
 	} catch (err) {
-		res.status(400).json({});
+		res.status(400).json({ err: err });
 	}
 };
